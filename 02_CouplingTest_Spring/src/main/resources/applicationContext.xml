@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id = "tv" class="com.ezen.biz.LgTV" init-method="initMethod"
+		destroy-method="destroyMethod" scope="singleton"></bean>
+	
+<!-- 			scope="prototype" : 요청할때마다 객체생성 / singleton : 한번 만들어놓고 요청시 -->
+</beans>

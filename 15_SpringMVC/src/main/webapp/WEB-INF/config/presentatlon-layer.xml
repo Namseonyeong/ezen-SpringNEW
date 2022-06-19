@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- HandlerMapping 등록 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<!-- 값 초기화 -->
+			<props>
+				<prop key="/login">login</prop> <!-- login은 bean 객체의 ID -->
+				<prop key="/getBoardList.do">getBoardList</prop>
+				<prop key="/getBoard.do">getBoard</prop>
+				
+			</props>
+		</property>
+	</bean>
+
+	<!-- Controller 등록  -->
+	<bean id="login" class="com.ezen.view.controller.LoginController"></bean>
+	<bean id="getBoardList" class="com.ezen.view.controller.GetBoardListController"></bean>
+	<bean id="getBoard" class="com.ezen.view.controller.GetBoardController"></bean>
+</beans>

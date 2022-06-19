@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 생성자 주입방식 
+	SamsungTV 쓰고 컨트롤+스페이스 누르면 자동생성 
+	<bean id="tv" class="com.ezen.biz.SamsungTV">
+		<constructor-arg ref="jbl"></constructor-arg>
+		<constructor-arg value="1000000"></constructor-arg>
+	</bean>
+ -->
+ 
+<!--  Setter 주입방식  -->
+<!-- 
+	<bean id="tv" class="com.ezen.biz.SamsungTV">
+ 		name = samsungTV의 멤버변수의 이름, 쎄터(set)를 빼고 소문자로 변경해서 들어가는 이름 
+		<property name="speaker" ref="bose"></property>
+		<property name="price" value="1000000"></property>
+	</bean>
+	
+ -->
+ 
+ <!-- P네임 스페이스사용 : 하단의 Namespaces 들어가서 p 체크-->
+
+	<bean id="tv" class="com.ezen.biz.SamsungTV" p:speaker-ref="bose" p:price="1000000"></bean> 
+	<bean id="bose" class="com.ezen.biz.BoseSpeaker"></bean>
+	<bean id="jbl" class="com.ezen.biz.JBLSpeaker"></bean>
+	
+	
+<!-- collection.inject 패키지	/ 컬렉션 멤버의 의존성 주입 -->
+	<bean id="collectionBean" class="collection.inject.CollectionBean">
+		<property name="addressList">
+			<list>
+<!-- 			Strign, 또는 값이 1개 일떄는 value -->
+				<value>서울시 관악구 신림동</value>
+				<value>서울시 강남구 역삼동</value>
+			</list>
+		</property>
+		
+		
+		<property name="bookList">
+			<list>
+		<!--값이 여러개이기 때문에 ref 사용 -->
+				<ref bean="book1"></ref>
+				<ref bean="book2"></ref>
+			</list>
+		</property>
+	
+		
+		<!-- Set 타입 매핑 -->
+		<property name="movieList">
+			<set value-type="java.lang.String">
+				<value>광해, 왕이 된 남자</value>
+				<value>어벤저스 에이지 오브 울트론</value>
+				<value>신과함꼐 : 인과 연</value>
+				<value>광해, 왕이 또 됨</value>
+			</set>
+		</property>
+
+		<!--  Map 타입 매핑 -->
+		<property name="prefList">
+			<map>
+				<entry>
+					<key><value>국어</value></key>
+					<value>90</value>
+				</entry>
+				<entry>
+					<key><value>수학</value></key>
+					<value>95</value>
+				</entry>
+			</map>
+		</property>
+		<property name="propList">
+			<props>
+				<prop key="username">이순신</prop>
+				<prop key="age">37</prop>
+			</props>
+		</property>
+
+
+
+</bean>	
+		
+		<!-- 단순한 데이터가 아닌	book class 타입의 객체 -->
+		<bean id="book1" class="collection.inject.Book">
+			<property name="title" value="고구려1"></property>
+			<property name="author" value="김진명"></property>
+			<property name="price" value="12800"></property>
+		</bean>
+		<bean id="book2" class="collection.inject.Book">
+			<property name="title" value="고구려2"></property>
+			<property name="author" value="김진명"></property>
+			<property name="price" value="12800"></property>
+		</bean>	
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

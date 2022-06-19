@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+   <context:component-scan base-package="com.ezen.biz"></context:component-scan>
+   
+ 
+	<!--  AOP 어노테이션 자동인식  -->
+ 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+ 	
+ 	
+	<!--  오라클 DB 연결설정 -->
+	 <!-- property가 위치한 장소 표현 / classpath: = spring에서 src/main/resource를 말함-->
+	<context:property-placeholder location="classpath:config/database.properties"/> 
+	<bean id = "dataSource" class = "org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name = "driverClassName" value="${jdbc.driver}" />
+		<property name = "url" value="${jdbc.url}" />
+		<property name = "username" value="${jdbc.username}" />
+		<property name = "password" value="${jdbc.password}" />
+	</bean>	
+	
+	<!-- Spring JDBC 객체 등록 -->
+	<bean id="JdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!--  트랜젝션 매니저(관리자) 등록 -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	
+	<!-- 트랜잭션 어드바이스 등록 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>   <!-- get* 으로 시작되는 / read-only="true" = 트랜잭션에서 제외 시켜라 -->
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 트랜잭션 AOP 설정 -->
+	<aop:config>
+		<aop:pointcut  id="txPointcut" expression="execution(* com.ezen.biz..*(..))"/>
+		<aop:advisor pointcut-ref="txPointcut" advice-ref="txAdvice"/>
+	</aop:config>
+	
+	
+	
+	
+</beans>

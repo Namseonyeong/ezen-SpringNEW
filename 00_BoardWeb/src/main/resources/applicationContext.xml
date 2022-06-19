@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	
+<!-- 하단의 Namespaces가서 context 체크 -->
+<!-- 처음에 프로젝트 시작할떄 base 패키지를 지정하는 이유는 context등 이용할떄 편리하기 위해?..  -->
+<context:component-scan base-package="com.ezen.biz"></context:component-scan>
+
+
+
+<!-- (!) Setter 방식으로 구현시 필요  --> 
+<!-- <bean id="userService" class="com.ezen.biz.user.UserServiceimpl"> -->
+<!-- name = service의 이름과 동일하게  ref = 어딜 참조할것인가 --> 
+<!-- 	<property name="userDAO" ref="userDAO"></property> -->
+
+<!-- </bean> -->
+<!-- <bean id="userDAO" class="com.ezen.biz.dao.UserDAO"></bean> -->
+</beans>

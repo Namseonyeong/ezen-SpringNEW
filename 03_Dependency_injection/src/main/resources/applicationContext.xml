@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="tv" class="com.ezen.biz.SamsungTV">
+	
+<!--  			인젝션 : 생성자를 통해서 매개변수를 넣어준다  -->
+<!-- index를 넣어서 index="1"~ 순서를 넣어주면 위치를 변경해도 인덱스 순서대로 출력  -->
+		<constructor-arg ref="bose"></constructor-arg>
+						<!-- ref : 잠조하는 생성자는 무엇인가, 참조형 클래스 주입시 사용 -->
+		<constructor-arg value="10000000"></constructor-arg>
+						<!-- value : 기본형 주입시 -->
+	</bean>
+	
+	<bean id="bose" class="com.ezen.biz.BoseSpeaker"></bean>
+	
+</beans>
