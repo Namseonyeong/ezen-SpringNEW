@@ -17,7 +17,7 @@
 			<td><input type="text" name="id"/></td>
 		</tr>
 		<tr>
-			<td bgcolor="orange">비밀번호</td>
+			<td bgcolor="orange">비밀번호1</td>
 			<td><input type="password" name="password"/></td>
 		</tr>
 		<tr>
