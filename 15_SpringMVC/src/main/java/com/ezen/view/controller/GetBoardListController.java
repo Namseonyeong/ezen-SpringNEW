@@ -22,7 +22,7 @@ public class GetBoardListController implements Controller {
 		// 검색결과를 request객체에 저장하고 게시판 목록을 호출
 		ModelAndView modelView = new ModelAndView();  // 객체 생성
 		modelView.addObject("boardList", boardList );  //("속성명", 변수명)
-		modelView.setViewName("getBoardList.jsp");
+		modelView.setViewName("getBoardList");
 		
 		return modelView;
 		

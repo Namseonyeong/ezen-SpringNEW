@@ -55,8 +55,8 @@
 	</form>
 	<hr>
 	<a href="insertBoard.jsp">글등록</a>&nbsp;&nbsp;
-	<a href="deleteBoard_proc.jsp?seq=<%= board.getSeq() %>">글 삭제</a>&nbsp;&nbsp;
-	<a href="getBoardList.jsp">글 목록</a>
+	<a href="deleteBoard.do?seq=<%= board.getSeq() %>">글 삭제</a>&nbsp;&nbsp;
+	<a href="getBoardList.do">글 목록</a>
 </div>
 </body>
 </html>

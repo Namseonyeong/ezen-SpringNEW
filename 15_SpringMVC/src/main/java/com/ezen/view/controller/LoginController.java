@@ -30,7 +30,7 @@ public class LoginController implements Controller {
 		if (user != null) { // 로그인 성공의 경우 , 화면만 넘겨주면 되기 때문에 modelView 사용 / redirect : 사용자가 요청하듯
 			 modelView.setViewName("redirect:getBoardList.do");
 		} else {
-			 modelView.setViewName("login.jsp"); 
+			 modelView.setViewName("login"); 
 		}
 		
 		return modelView;

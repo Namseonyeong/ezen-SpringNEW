@@ -31,7 +31,7 @@ public class GetBoardController implements Controller {
 		// 화면 응답 처리
 		ModelAndView modelView = new ModelAndView();
 		modelView.addObject("board", board); // Model 정보저장 (내장객체에 조회한 내용 저장)
-		modelView.setViewName("getBoard.jsp");  // View 정보 저장
+		modelView.setViewName("getBoard");  // View 정보 저장
 		
 		return modelView;
 	}

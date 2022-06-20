@@ -8,17 +8,35 @@
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<!-- 값 초기화 -->
-			<props>
-				<prop key="/login">login</prop> <!-- login은 bean 객체의 ID -->
+			<props>  <!-- key에 / 가 들어가는 이유는 주소값의 마지막에 들어가기때문에..? -->
+				<prop key="/login.do">login</prop> <!-- login은 bean 객체의 ID -->
+				<prop key="/loginView.do">loginView</prop>
 				<prop key="/getBoardList.do">getBoardList</prop>
 				<prop key="/getBoard.do">getBoard</prop>
-				
+				<prop key="/insertBoard.do">insertBoard</prop>
+				<prop key="/updateBoard.do">updateBoard</prop>
+				<prop key="/deleteBoard.do">deleteBoard</prop>
+				<prop key="/logout.do">logout</prop>
+
 			</props>
 		</property>
 	</bean>
 
 	<!-- Controller 등록  -->
 	<bean id="login" class="com.ezen.view.controller.LoginController"></bean>
+	<bean id="loginView" class="com.ezen.view.controller.LoginViewController"></bean>
 	<bean id="getBoardList" class="com.ezen.view.controller.GetBoardListController"></bean>
 	<bean id="getBoard" class="com.ezen.view.controller.GetBoardController"></bean>
+	<bean id="insertBoard" class="com.ezen.view.controller.InsertBoardController"></bean>	
+	<bean id="updateBoard" class="com.ezen.view.controller.UpdateBoardController"></bean>
+	<bean id="deleteBoard" class="com.ezen.view.controller.DeleteBoardController"></bean>
+	<bean id="logout" class="com.ezen.view.controller.LogoutController"></bean>
+	
+	
+	<!-- View Resolver 등록 : 클라이언트로부터의 직접적인 JSP호출 차단 / value="/WEB-INF/board/"-->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/board/"></property> 
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
 </beans>
