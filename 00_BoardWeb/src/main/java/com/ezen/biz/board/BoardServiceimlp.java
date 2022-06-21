@@ -48,4 +48,3 @@ public class BoardServiceimlp implements BoardService {
 	
 	
 }
-s
