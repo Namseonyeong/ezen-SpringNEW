@@ -1,20 +1,31 @@
 package com.ezen.biz.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlTransient;
+
+@XmlAccessorType(XmlAccessType.FIELD) // 이 클래스가 XML 문서로 변환될 수 있다는 의미
 public class BoardVO {
+	@XmlAttribute
 	private int seq;
 	private String title;
 	private String writer;
 	private String content;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date regDate;
 	private int cnt;
+	@XmlTransient
 	private String searchCondition;
+	@XmlTransient
 	private String searchKeyword;
+	@XmlTransient
 	private MultipartFile uploadFile;
 
 	public int getSeq() {
@@ -65,7 +76,7 @@ public class BoardVO {
 		this.cnt = cnt;
 	}
 
-	@JsonIgnore
+//	@JsonIgnore
 	public String getSearchCondition() {
 		return searchCondition;
 	}
@@ -74,7 +85,7 @@ public class BoardVO {
 		this.searchCondition = searchCondition;
 	}
 	
-	@JsonIgnore
+//	@JsonIgnore
 	public String getSearchKeyword() {
 		return searchKeyword;
 	}
@@ -83,7 +94,7 @@ public class BoardVO {
 		this.searchKeyword = searchKeyword;
 	}
 
-	@JsonIgnore
+//	@JsonIgnore
 	public MultipartFile getUploadFile() {
 		return uploadFile;
 	}

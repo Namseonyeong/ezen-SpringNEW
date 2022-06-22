@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ezen.biz.board.BoardService;
+import com.ezen.biz.dto.BoardListVO;
 import com.ezen.biz.dto.BoardVO;
 
 //컨트롤러 통합 (게시글)
@@ -133,6 +134,34 @@ public class BoardController {
 		
 		return boardList;
 	}
+	
+	/*
+	 * XML 문서 형식으로 변환
+	 */
+	@RequestMapping("/dataTransForm_xml.do")  // 어떤 URL을 받을때 이 데이터를 처리할것인지
+	@ResponseBody // jsp가 아니라 데이터 형식으로 rutnrn하는 어노테이션
+	public BoardListVO dataTransformXML(BoardVO vo) {
+		// searchCondition, searchKeyword 기본값 설정 
+		if (vo.getSearchCondition() == null) {
+			vo.setSearchCondition("TITLE");
+		} 
+		if (vo.getSearchKeyword() == null) {
+			vo.setSearchKeyword("");
+		}
+		
+		List<BoardVO> boardList = boardService.getBoardList(vo);
+		
+		BoardListVO boardListVO = new BoardListVO(); //List 객체 생성
+		boardListVO.setBoardList(boardList);
+		
+		return boardListVO;
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 }

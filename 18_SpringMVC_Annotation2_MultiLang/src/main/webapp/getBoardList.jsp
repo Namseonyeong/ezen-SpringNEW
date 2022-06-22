@@ -3,6 +3,7 @@
 <!-- 태그 라이브러리 -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,12 +46,11 @@
 <!-- JSTL forEach를 통해 전달된 게시글 목록 데이터를 반복하여 읽어 출력 -->
 <!-- items : 컨트롤러에서 보낸 타입 var: 받아온 데이터를 담는 변수 -->
 	<c:forEach items="${boardList}" var="board">
-	
 	<tr>	
 		<td>${board.seq}</td>
 		<td><a href="getBoard.do?seq=${board.seq}">${board.title}</a></td>
 		<td>${board.writer}</td>
-		<td>${board.regDate}</td>
+		<td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd"/></td>
 		<td>${board.cnt}</td>
 	</tr>
 	</c:forEach>
